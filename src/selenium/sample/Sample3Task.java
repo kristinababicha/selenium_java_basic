@@ -39,21 +39,32 @@ public class Sample3Task {
     public void assertEqualsTask() throws Exception {
 //         TODO:
 //         check how many element with class "test" there are on page (5)
+      ;
+        assertEquals( 5, driver.findElements(By.className("test")).size());
+        driver.findElement(By.id("buttonId")).getAttribute("value");
+
 //         check that value of second button is "This is also a button"
     }
 
     @Test
     public void assertTrueTask() throws Exception {
+
 //         TODO:
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
+        String errorMessage = "Some custom error message";
+        assertTrue(errorMessage,
+                driver.findElement(By.id("buttonId")).getAttribute("value").equalsIgnoreCase("this is Also a Button"));
     }
 
     @Test
     public void assertFalseTask() throws Exception {
 //         TODO:
 //        check that it is False that value of second button is "This is a button"
+        String valueOfButton = driver.findElement(By.id("buttonId")).getAttribute("value");
+        assertFalse(valueOfButton.equals("This is a button"));
+
     }
 
     @Test
@@ -61,5 +72,11 @@ public class Sample3Task {
 //        TODO:
 //        check that none of items with class "test"
 //        contain number 190
+        List<WebElement> elems = driver.findElements(By.className("test"));
+        elems.forEach(webElement -> {
+            if (webElement.getText().contains("190")) {
+                fail();
+            }
+        });
     }
 }
