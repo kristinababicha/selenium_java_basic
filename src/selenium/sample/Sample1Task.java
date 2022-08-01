@@ -8,6 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
+/**
+ * @author vigneshKrishnan
+ */
+
 public class Sample1Task {
     static String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
 
@@ -26,9 +30,9 @@ public class Sample1Task {
         driver.get("https://kristinek.github.io/site/index2.html");
 
 //         get title of page
-        System.out.println("Title of the page is "+driver.getTitle());
+        System.out.println("Title of the Page is "+driver.getTitle());
 //         get URL of current page
-        System.out.println("URL of the current page is "+driver.getCurrentUrl());
+        System.out.println("URL of the Current page is "+driver.getCurrentUrl());
 //         close browser
         driver.close();
     }
