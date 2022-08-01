@@ -1,12 +1,9 @@
 package selenium.sample;
 
-
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.io.File;
-import java.sql.Driver;
 
 public class Sample1Task {
     static String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
