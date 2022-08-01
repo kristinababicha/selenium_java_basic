@@ -37,25 +37,54 @@ public class Sample2Task {
     public void findElementByID() throws Exception {
 //         TODO:
 //         get text "Heading 2 text" using id
+        System.out.println(driver.findElement(By.id("heading_1")).getText());
     }
 
     @Test
     public void findElementByName() throws Exception {
 //         TODO:
 //         get attribute "id" and "value" of button "This is also a button" using name
+        //System.out.println(driver.findElement(By.name("randomButton2"));
+        WebElement element = driver.findElement(By.name("randomButton2"));
+        System.out.println("ID - " + element.getAttribute("id"));
+        System.out.println("VALUE - " + element.getAttribute("value"));
+
+    //System.out.println(driver.findElement(By.id("buttonId").getattribute("value")));
     }
 
     @Test
     public void findElementByClassFirst() throws Exception {
 //         TODO:
 //         get first text of class "test" (should be "Test Text 1")
-    }
+        List<WebElement> elements= driver.findElements(By.className("test"));
+        int i=1;
+        for (WebElement allElements : elements) {
+            if(i==1)
+                System.out.println(allElements.getText());
+
+            i++;
+        }
+
+     }
 
     @Test
     public void findElementByClassAll() throws Exception {
 //         TODO:
 //         get size text of class "test" (should be 5)
-//         get text of class "test"
-//         get third text of class "test" (should be "Test Text 4")
+        List<WebElement> elements= driver.findElements(By.className("test"));
+        System.out.println("SIZE TEXT OF CLASS - "+elements.size());
+        int i = 1;
+        for (WebElement classAll:elements){
+            //         get text of class "test"
+            System.out.println("TEXT OF CLASS test "+ classAll.getText());
+            if(i == 3) {
+                //         get third text of class "test" (should be "Test Text 4")
+                System.out.println("Third Text of Class test is " + classAll.getText());
+            }
+            i++;
+        }
+
+
+
     }
 }
