@@ -22,7 +22,7 @@ public class Sample1Task {
 //         get title of page
             System.out.println(driver.getTitle());
 //         get URL of current page
-        System.out.println(libWithDriversLocation);
+        System.out.println(driver.getCurrentUrl());
 //         close browser
         driver.quit();
 
