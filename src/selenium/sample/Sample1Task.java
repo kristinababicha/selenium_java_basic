@@ -14,7 +14,7 @@ public class Sample1Task {
     public void goToHomepage() throws Exception {
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
 WebDriver driver = new ChromeDriver();
-//        TODO:
+
 //         define driver
         driver.get("https://google.com");
 driver.get("https://kristinek.github.io/site/index2.html");
