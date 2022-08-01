@@ -19,10 +19,13 @@ public class Sample1Task {
 
 //         go to https://kristinek.github.io/site/index2.html
         driver.get("https://kristinek.github.io/site/index2.html");
+
 //         get title of page
         System.out.println(driver.getTitle());
+
 //         get URL of current page
         System.out.println(driver.getCurrentUrl());
+
 //         close browser
         driver.quit();
     }
