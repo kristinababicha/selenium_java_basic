@@ -15,6 +15,7 @@ public class Sample2Task {
     WebDriver driver;
 
     // method which is being run before each test
+
     @Before
     public void startingTests() throws Exception {
         // from Sample 1:
@@ -37,18 +38,25 @@ public class Sample2Task {
     public void findElementByID() throws Exception {
 //         TODO:
 //         get text "Heading 2 text" using id
+        System.out.println(driver.findElement(By.id("Heading_2")). getText());
+
     }
 
     @Test
     public void findElementByName() throws Exception {
 //         TODO:
 //         get attribute "id" and "value" of button "This is also a button" using name
-    }
+        WebElement elem= driver.findElement(By.name("randomButton2"));
+        System.out.println(elem.getAttribute("value"));
+        System.out.println(elem.getAttribute("id"));
+            }
 
     @Test
     public void findElementByClassFirst() throws Exception {
 //         TODO:
-//         get first text of class "test" (should be "Test Text 1")
+     //         get first text of class "test" (should be "Test Text 1")
+        System.out.println(driver.findElement(By.className("test")). getText());
+        System.out.println(driver.findElements(By.className("test")). get(0).getText()); //to specify index
     }
 
     @Test
@@ -57,5 +65,11 @@ public class Sample2Task {
 //         get size text of class "test" (should be 5)
 //         get text of class "test"
 //         get third text of class "test" (should be "Test Text 4")
+        List<WebElement> elems = driver.findElements(By.className("test"));
+        System.out.println(elems.size());
+        elems.forEach(WebElement -> {
+            System.out.println(WebElement.getText());
+        });
+        System.out.println(elems.get(2). getText());
     }
 }
