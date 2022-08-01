@@ -64,25 +64,23 @@ public class Sample2Task {
     @Test
     public void findElementByClassAll() throws Exception {
 //         TODO:
-//         get size text of class "test" (should be 5)
+//         1.get size text of class "test" (should be 5)
         System.out.println(driver.findElements(By.className("text")).size());
 
-//         get text of class "test"
+//         2.get text of class "test"
         List<WebElement> elements = driver.findElements(By.className("test"));
         for (WebElement elementWithClass : elements) {
             System.out.println(elementWithClass.getText());
 
         }
-//         get third text of class "test" (should be "Test Text 4")
-        System.out.println(driver.findElements(By.className("text")).get(2).getText());
+//         3.get third text of class "test" (should be "Test Text 4")
+        System.out.println(driver.findElements(By.className("test")).get(2).getText());
 
     }
 }
-// other solution:
-//        List<WebElement> elements = driver.findElements(By.className("test"));
-//        System.out.println(elements.size());
-//        elements.forEach(webElement -> {
-//            System.out.println(webElement.getText());
-//        });
-////        System.out.println(elements.get(2).getText());
+// other solution of 2 & 3:
+//        List<WebElement> elems = driver.findElements(By.className("test"));
+//        System.out.println(elems.size());
+//        elements.forEach(webElement -> { System.out.println(webElement.getText()); });
+//        System.out.println(elems.get(2).getText());
 
