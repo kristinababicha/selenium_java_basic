@@ -35,27 +35,46 @@ public class Sample2Task {
 
     @Test
     public void findElementByID() throws Exception {
-//         TODO:
+//
 //         get text "Heading 2 text" using id
+        String text = driver.findElement(By.id("heading_2")).getText();
+        System.out.println(text);
     }
 
     @Test
     public void findElementByName() throws Exception {
-//         TODO:
+
 //         get attribute "id" and "value" of button "This is also a button" using name
+        WebElement ele = driver.findElement(By.name("randomButton2"));
+        System.out.println(ele.getAttribute("id"));
+        System.out.println(ele.getAttribute("value"));
     }
 
     @Test
     public void findElementByClassFirst() throws Exception {
-//         TODO:
+
 //         get first text of class "test" (should be "Test Text 1")
+
+        System.out.println(driver.findElements(By.className("test")).get(0).getText());
     }
 
     @Test
     public void findElementByClassAll() throws Exception {
-//         TODO:
+
 //         get size text of class "test" (should be 5)
 //         get text of class "test"
 //         get third text of class "test" (should be "Test Text 4")
+        System.out.println(driver.findElements(By.className("test")).size());
+        System.out.println("--------------------------------");
+        List<WebElement> elements = driver.findElements(By.className("test"));
+        for (WebElement elem : elements){
+            System.out.println(elem.getText());
+        }
+        System.out.println("--------------------------------");
+        elements.forEach(webElement -> {
+            System.out.println(webElement.getText());
+        });
+        System.out.println("--------------------------------");
+        System.out.println(driver.findElements(By.className("test")).get(2).getText());
     }
 }
