@@ -40,6 +40,8 @@ public class Sample3Task {
 //         TODO:
 //         check how many element with class "test" there are on page (5)
 //         check that value of second button is "This is also a button"
+            assertEquals(5, driver.findElements(By.className("test")).size());
+            assertEquals("This is also a button", driver.findElement(By.id("buttonId")).getAttribute("value"));
     }
 
     @Test
@@ -48,12 +50,22 @@ public class Sample3Task {
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
+        String failureMessage = "Some custom message";
+        String whatWeFound = driver.findElement(By.id("buttonId")).getAttribute("value");
+        String whatWeCompareTo = "This is Also a Button";
+
+        boolean resultOfComparison = whatWeFound.equalsIgnoreCase(whatWeCompareTo);
+
+        assertTrue(failureMessage, resultOfComparison);
     }
 
     @Test
     public void assertFalseTask() throws Exception {
 //         TODO:
 //        check that it is False that value of second button is "This is a button"
+        String valueOfButton = driver.findElement(By.id("buttonId")).getAttribute("value");
+
+        assertFalse("custom", valueOfButton.equalsIgnoreCase("This is a button"));
     }
 
     @Test
@@ -61,5 +73,22 @@ public class Sample3Task {
 //        TODO:
 //        check that none of items with class "test"
 //        contain number 190
+        List<WebElement> elems = driver.findElements(By.className("test"));
+
+//        elems.forEach(webElement -> {
+//            System.out.println(webElement.getText());
+//            System.out.println(webElement.getText().contains("190"));
+////            if (webElement.getText().contains("190")) {
+////                fail();
+////            }
+//        } );
+
+        for (WebElement webElement : elems) {
+            System.out.println(webElement.getText());
+            System.out.println(webElement.getText().contains("190"));
+            if (webElement.getText().contains("190")) {
+                fail();
+            }
+        }
     }
 }
