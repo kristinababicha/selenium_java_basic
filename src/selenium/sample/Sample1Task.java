@@ -11,8 +11,8 @@ public class Sample1Task {
     static String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
 
     @Test
-    public void goToHomepage() {
-//        TODO:
+    public void goToHomepage() throws Exception{
+
 //         define driver
 //         go to https://kristinek.github.io/site/index2.html
 //         get title of page
@@ -21,7 +21,7 @@ public class Sample1Task {
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
         ChromeDriver dr = new ChromeDriver();
         dr.get("https://kristinek.github.io/site/index2.html");
-
+        Thread.sleep(5000);
         System.out.println(dr.getTitle());
         System.out.println(dr.getCurrentUrl());
         dr.close();
