@@ -38,22 +38,49 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
+        String enteredNumber = "555";
+        driver.findElement(By.name("vfb-9")).clear();
+        driver.findElement(By.name("vfb-9")).sendKeys(enteredNumber);
+
 //        check that button is not clickable "Clear Result"
+        assertFalse(driver.findElement(By.id("clear_result_button_number")).isEnabled());
+
 //        check that text is not displayed
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
+
 //        click on "Result" button
+        driver.findElement(By.id("result_button_number")).click();
+
 //        check that text is displayed
+        assertTrue(driver.findElement(By.id("result_number")).isDisplayed());
+
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+        assertEquals("You entered number: \"" +enteredNumber + "\"", driver.findElement(By.id("result_number")).getText());
+
 //        check that the button "Clear Result" is clickable now
+        assertTrue(driver.findElement(By.id("clear_result_button_number")).isEnabled());
+
 //        click on "Clear Result"
+        driver.findElement(By.id("clear_result_button_number")).click();
+
 //        check that the text is now (""), but it is not displayed
+        assertEquals("", driver.findElement(By.id("result_number")).getText());
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
     }
 
     @Test
     public void clickOnLink() throws Exception {
 //         TODO:
 //        check current url is base_url
+        assertEquals(base_url, driver.getCurrentUrl());
+
 //        click on "This is a link to Homepage"
+        driver.findElement(By.id("homepage_link")).click();
+
 //        check that current url is not base_url
+        assertNotEquals(base_url, driver.getCurrentUrl());
+
 //        verify that current url is homepage
+        assertEquals("https://kristinek.github.io/site/" ,driver.getCurrentUrl());
     }
 }
