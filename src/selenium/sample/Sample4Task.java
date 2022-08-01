@@ -21,7 +21,7 @@ public class Sample4Task {
     public void startingTests() throws Exception {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        //System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
         // declaration above:
         driver = new ChromeDriver();
         //open page:
@@ -38,11 +38,34 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
+
+        WebElement clickButton = driver.findElement(By.id("number"));
+        clickButton.click();
+        clickButton.clear();
+        clickButton.sendKeys("64");
+
 //        check that button is not clickable "Clear Result"
+        WebElement clearResultButton = driver.findElement(By.id("clear_result_button_number"));
+
+        assertFalse(clearResultButton.isEnabled());
+
+
 //        check that text is not displayed
+
+
 //        click on "Result" button
+        WebElement resultButton = driver.findElement(By.id("result_button_number"));
+        resultButton.click();
+
 //        check that text is displayed
+        String resultDisplayed = driver.findElement(By.id("result_number")).getText();
+        String successMessage = "You entered number: \"64\"";
+
+        assertEquals(resultDisplayed, successMessage);
+
+
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+
 //        check that the button "Clear Result" is clickable now
 //        click on "Clear Result"
 //        check that the text is now (""), but it is not displayed
