@@ -43,8 +43,9 @@ public class Sample4Task {
 
 
 //        enter a number under "Number"
+        String inputNumber = "4";
         driver.findElement(By.id("number")).clear();
-        driver.findElement(By.id("number")).sendKeys("4");
+        driver.findElement(By.id("number")).sendKeys(inputNumber);
 
 //        check that button is not clickable "Clear Result"
         assertFalse(driver.findElement(By.id("clear_result_button_number")).isEnabled());
@@ -55,7 +56,8 @@ public class Sample4Task {
 //        check that text is displayed
         assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
-        assertEquals("You entered number: 4 " , driver.findElement(By.id("result_number")).getText());
+        assertEquals("You entered number: \"" + inputNumber + "\"" ,
+                driver.findElement(By.id("result_number")).getText());
 //        check that the button "Clear Result" is clickable now
         assertTrue(driver.findElement(By.id("clear_result_button_number")).isEnabled());
 //        click on "Clear Result"
@@ -72,10 +74,11 @@ public class Sample4Task {
         assertEquals(base_url, driver.getCurrentUrl());
 
 //        click on "This is a link to Homepage"
-        driver.findElement(By.name("Home")).click();
+        driver.findElement(By.id("homepage_link")).click();
 //        check that current url is not base_url
-        assertEquals("https://kristinek.github.io/site/",driver.getCurrentUrl());
+        assertNotEquals(base_url,driver.getCurrentUrl());
 //        verify that current url is homepage
-//        assertFalse(driver.getCurrentUrl().equals("https://kristinek.github.io/site/"));
+        assertEquals("https://kristinek.github.io/site/", driver.getCurrentUrl());
+
     }
 }
