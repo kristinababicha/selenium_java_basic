@@ -36,24 +36,53 @@ public class Sample4Task {
 
     @Test
     public void enterNumber() throws Exception {
-//         TODO:
+//
+        Thread.sleep(1000);
+        String inputNumber = "44";
+        WebElement inputElem = driver.findElement(By.id("number"));
+        WebElement resultDisplayElem = driver.findElement(By.id("result_number"));
+        WebElement btnClearResultElem = driver.findElement(By.id("clear_result_button_number"));
+        WebElement btnResultElem = driver.findElement(By.id("result_button_number"));
+
+//        TODO:
 //        enter a number under "Number"
+        inputElem.clear();
+        inputElem.sendKeys(inputNumber);
 //        check that button is not clickable "Clear Result"
+        Thread.sleep(2000);
+        assertFalse(btnClearResultElem.isEnabled());
 //        check that text is not displayed
+        assertFalse(resultDisplayElem.isDisplayed());
 //        click on "Result" button
+        btnResultElem.click();
+        Thread.sleep(2000);
 //        check that text is displayed
+        assertTrue(resultDisplayElem.isDisplayed());
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+        assertEquals( "You entered number: \"" + inputNumber + "\"", resultDisplayElem.getText());
 //        check that the button "Clear Result" is clickable now
+        assertTrue(btnClearResultElem.isEnabled());
 //        click on "Clear Result"
+        btnClearResultElem.click();
 //        check that the text is now (""), but it is not displayed
+        assertEquals("", resultDisplayElem.getText());
+        assertFalse(resultDisplayElem.isDisplayed());
     }
 
     @Test
     public void clickOnLink() throws Exception {
+        WebElement homepageLinkElem = driver.findElement(By.id("homepage_link"));
+        String homepageUrl = "https://kristinek.github.io/site/";
 //         TODO:
 //        check current url is base_url
+        assertEquals(base_url, driver.getCurrentUrl());
 //        click on "This is a link to Homepage"
+        homepageLinkElem.click();
+        Thread.sleep(5000);
 //        check that current url is not base_url
+        assertNotEquals(base_url, driver.getCurrentUrl());
 //        verify that current url is homepage
+        System.out.println(driver.getCurrentUrl());
+        assertEquals(homepageUrl, driver.getCurrentUrl());
     }
 }
