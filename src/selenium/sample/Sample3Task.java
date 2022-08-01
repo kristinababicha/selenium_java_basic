@@ -39,7 +39,20 @@ public class Sample3Task {
     public void assertEqualsTask() throws Exception {
 //         TODO:
 //         check how many element with class "test" there are on page (5)
+
+        List<WebElement> elementsOnPage = driver.findElements(By.className("test"));
+        assertEquals(elementsOnPage.size(), 5);
+
+////easy solution:
+//        assertEquals(5,driver.findElements(By.className("test")).size());
+
 //         check that value of second button is "This is also a button"
+        WebElement secondButton = driver.findElement(By.id("buttonId"));
+        assertEquals(secondButton.getAttribute("value"), "This is also a button");
+
+////easy solution:
+//        assertEquals("This is also a button", driver.findElement(By.id("buttonId")).getAttribute("value"));
+
     }
 
     @Test
@@ -48,18 +61,46 @@ public class Sample3Task {
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
+
+        assertTrue("custom error message",
+                driver.findElement((By.id("buttonId"))).getAttribute("value")
+                        .equalsIgnoreCase("this is Also a Button"));
     }
 
     @Test
     public void assertFalseTask() throws Exception {
 //         TODO:
 //        check that it is False that value of second button is "This is a button"
+
+        assertFalse(driver.findElement((By.id("buttonId"))).getAttribute("value").equals("This is a button"));
+
+////other solution
+//        String buttonText =  driver.findElement((By.id("buttonId"))).getAttribute("value");
+//        assertFalse(buttonText.equals("This is a button"));
+
     }
+
 
     @Test
     public void failTask() throws Exception {
 //        TODO:
 //        check that none of items with class "test"
 //        contain number 190
+        List<WebElement> containsElements = driver.findElements(By.className("test"));
+        for (WebElement contElement : containsElements)
+            if (contElement.getText().contains("190")) {
+                fail();
+            }
+
+//other solution with forEach
+//        List<WebElement> elems = driver.findElements(By.className("test"));
+//        elems.forEach(webElement -> {
+//            if (webElement.getText().contains("190")){
+//        fail();
+//            };
+//        });
+
+
+
     }
 }
