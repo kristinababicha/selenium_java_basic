@@ -19,7 +19,7 @@ public class Sample2Task {
     public void startingTests() throws Exception {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        //System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
         // declaration above:
         driver = new ChromeDriver();
 
@@ -37,11 +37,22 @@ public class Sample2Task {
     public void findElementByID() throws Exception {
 //         TODO:
 //         get text "Heading 2 text" using id
+
+
+       System.out.println(driver.findElement(By.id("heading_2")).getText());
     }
 
     @Test
     public void findElementByName() throws Exception {
 //         TODO:
+
+        WebElement element = driver.findElement(By.name("randomButton2"));
+
+        System.out.println(element.getAttribute("id"));
+        System.out.println(element.getAttribute("value"));
+
+
+
 //         get attribute "id" and "value" of button "This is also a button" using name
     }
 
@@ -49,13 +60,27 @@ public class Sample2Task {
     public void findElementByClassFirst() throws Exception {
 //         TODO:
 //         get first text of class "test" (should be "Test Text 1")
+
+        System.out.println(driver.findElement(By.className("test")).getText());
+
     }
 
     @Test
     public void findElementByClassAll() throws Exception {
 //         TODO:
+
+
 //         get size text of class "test" (should be 5)
+        System.out.println(driver.findElements(By.className("test")).size());
+
+
 //         get text of class "test"
+        System.out.println(driver.findElements(By.className("test")).get(0).getText());
+
 //         get third text of class "test" (should be "Test Text 4")
+
+        System.out.println(driver.findElements(By.className("test")).get(2).getText());
+
+
     }
 }
