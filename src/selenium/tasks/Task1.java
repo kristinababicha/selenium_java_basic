@@ -36,6 +36,8 @@ public class Task1 {
 //        BUG: if I enter number 49 or 42 no errors where seen
 //        TODO
 //        enter number which is too small (positive number below 50), check that correct error is seen
+
+
     }
 
     @Test
