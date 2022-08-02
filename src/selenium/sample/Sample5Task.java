@@ -62,7 +62,7 @@ public class Sample5Task {
         driver.switchTo().alert().dismiss();
 //        verify the text on page
         String displayedText="So you desided to say? Good!";
-        assertEquals(displayedText,driver.findElement(By.id("textForAlerts")));
+        assertEquals(displayedText,driver.findElement(By.id("textForAlerts")).getText());
 
 
     }
