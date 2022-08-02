@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
+import java.sql.Driver;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -39,48 +40,92 @@ public class Sample7Task {
     @Test
     public void selectCheckBox() throws Exception {
 //         TODO:
-//        check that none of the checkboxes are ticked
-//        tick  "Option 2"
-//        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
-//        tick  "Option 3"
-//        click result
-//        check that text 'You selected value(s): Option 2, Option 3' is being displayed
+//          check that none of the checkboxes are ticked
+//          tick  "Option 2"
+//          check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
+//          tick  "Option 3"
+//          click result
+//          check that text 'You selected value(s): Option 2, Option 3' is being displayed
+        List<WebElement> checkboxes = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
+
+        for (WebElement checkbox : checkboxes) {
+            assertFalse(checkbox.isSelected());
+        }
+
+        driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='checkbox'")).click();
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='checkbox'")).isSelected());
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='checkbox'")).isSelected());
+        driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='checkbox'")).click();
+        driver.findElement(By.id("result_button_checkbox")).click();
+        assertEquals("You selected value(s): Option 2, Option 3", driver.findElement(By.id("result_checkbox")).getText());
     }
 
 
     @Test
     public void selectRadioButton() throws Exception {
 //         TODO:
-//        check that none of the radio are selected
-//        select  "Option 3"
-//        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
-//        select  "Option 1"
-//        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
-//        click result
-//        check that 'You selected option: Option 1' text is being displayed
+//          check that none of the radio are selected
+//          select  "Option 3"
+//          check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
+//          select  "Option 1"
+//          check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
+//          click result
+//          check that 'You selected option: Option 1' text is being displayed
+        List<WebElement> radioButtons = driver.findElements(By.cssSelector(".w3-check[type='radio']"));
+
+        for (WebElement radioButton : radioButtons) {
+            assertFalse(radioButton.isSelected());
+        }
+
+        driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='radio'")).click();
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='radio'")).isSelected());
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='radio'")).isSelected());
+        assertTrue(driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='radio'")).isSelected());
+        driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='radio'")).click();
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='radio'")).isSelected());
+        assertFalse(driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='radio'")).isSelected());
+        assertTrue(driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='radio'")).isSelected());
+
+        driver.findElement(By.id("result_button_ratio")).click();
+        assertEquals("You selected option: Option 1", driver.findElement(By.id("result_radio")).getText());
     }
 
     @Test
     public void selectOption() throws Exception {
-//        select "Option 3" in Select
-//        check that selected option is "Option 3"
-//        select "Option 2" in Select
-//        check that selected option is "Option 2"
-//        click result
-//        check that 'You selected option: Option 2' text is being displayed
+//        TODO:
+//         select "Option 3" in Select
+//         check that selected option is "Option 3"
+//         select "Option 2" in Select
+//         check that selected option is "Option 2"
+//         click result
+//         check that 'You selected option: Option 2' text is being displayed
+        Select dropdown = new Select(driver.findElement(By.id("vfb-12")));
+        dropdown.selectByVisibleText("Option 3");
+        assertEquals("Option 3", dropdown.getFirstSelectedOption().getText());
+        dropdown.selectByVisibleText("Option 2");
+        assertEquals("Option 2", dropdown.getFirstSelectedOption().getText());
+        driver.findElement(By.id("result_button_select")).click();
+        assertEquals("You selected option: Option 2", driver.findElement(By.id("result_select")).getText());
     }
 
     @Test
     public void chooseDateViaCalendarBonus() throws Exception {
 //         TODO:
-//        enter date '4 of July 2007' using calendar widget
-//        check that correct date is added
+//          enter date '4 of July 2007' using calendar widget
+//          check that correct date is added
+
     }
 
     @Test
     public void chooseDateViaTextBoxBonus() throws Exception {
 //         TODO:
-//        enter date '2 of May 1959' using text
-//        check that correct date is added
+//          enter date '2 of May 1959' using text
+//          check that correct date is added
+        driver.findElement(By.id("vfb-8")).click();
+        driver.findElement(By.className("ui-state-default")).click();
+        driver.findElement(By.id("vfb-8")).clear();
+        driver.findElement(By.id("vfb-8")).sendKeys("05/02/1959");
+        driver.findElement(By.id("result_button_date")).click();
+        assertEquals("You entered date: 05/02/1959", driver.findElement(By.id("result_date")).getText());
     }
 }
