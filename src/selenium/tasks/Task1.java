@@ -1,12 +1,28 @@
 package selenium.tasks;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.support.ui.Select;
 import java.io.File;
+import java.util.List;
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class Task1 {
     WebDriver driver;
@@ -26,9 +42,14 @@ public class Task1 {
     }
 
     @Test
-    public void errorOnText() {
+    public void errorOnText() throws Exception  {
 //        TODO
 //        enter a text instead of a number, check that correct error is seen
+        String inputText = "Silence";
+        driver.findElement(By.id("numb")).clear();
+        driver.findElement(By.id("numb")).sendKeys(inputText);
+        Thread.sleep(5000);
+     //   driver.findElement();
     }
 
     @Test
