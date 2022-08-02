@@ -114,14 +114,15 @@ public class Sample7Task {
         WebElement dateArea = driver.findElement(By.id("vfb-8"));
         dateArea.clear();
         dateArea.click();
-        WebElement dataWidget = driver.findElement(By.id("vfb-8"));
-        for (int i = 0; i < 181; i++) {
+        WebElement dataWidget = driver.findElement(By.id("ui-datepicker-div"));
+        for (int i = 0; i <= 180; i++) {
             dataWidget.findElement(By.className("ui-datepicker-prev")).click();
         }
-        dataWidget.findElement(By.xpath("//a[text()='4']")).click();
+        dataWidget.findElements(By.cssSelector(".ui-state-default")).get(3).click();
 //        enter date '4 of July 2007' using calendar widget
 //        check that correct date is added
         assertEquals("07/04/2007", dateArea.getAttribute("value"));
+        dateArea.clear();
     }
 
     @Test
