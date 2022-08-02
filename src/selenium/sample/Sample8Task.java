@@ -38,6 +38,7 @@ public class Sample8Task {
     public void styleChecks() throws Exception {
 //         TODO:
 //        check the background of top 2 sections
+
 //        rgba(255, 221, 221, 1);
 //        check h1 element font-size 64px
     }
