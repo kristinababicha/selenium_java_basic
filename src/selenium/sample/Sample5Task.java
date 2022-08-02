@@ -7,9 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.io.File;
-
 import static org.junit.Assert.assertEquals;
 
 public class Sample5Task {
@@ -26,31 +24,42 @@ public class Sample5Task {
         //open page:
         driver.get("https://kristinek.github.io/site/examples/alerts_popups");
     }
-
     // method which is being run after each test
     @After
     public void endingTests() throws Exception {
         driver.close();
     }
-
     @Test
     public void goToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
 //        switch to alert
+        Alert alert = driver.switchTo().alert();
 //        click ok
+        alert.accept();
 //        switch to second alert
+        Alert secondAlert = driver.switchTo().alert();
 //        verify alert text
+        assertEquals("Booooooooo!", alert.getText());
 //        click ok on second alert
+        alert.accept();
 //        verify that the correct page is opened
+        assertEquals("This page is alerted", driver.findElement(By.id("heading")).getText());
+        Thread.sleep(3000);
     }
 
     @Test
     public void doNotGoToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
 //        switch to alert
+        Alert alert = driver.switchTo().alert();
 //        click cancel
+        alert.dismiss();
 //        verify the text on page
+        assertEquals("So you desided to say? Good!", driver.findElement(By.id("textForAlerts")).getText());
+        Thread.sleep(3000);
     }
 }
