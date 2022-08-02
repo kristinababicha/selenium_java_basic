@@ -40,7 +40,7 @@ public class Sample7Task {
     public void selectCheckBox() throws Exception {
 //         TODO:
 //        check that none of the checkboxes are ticked
-        List<WebElement> checkBox = driver.findElements(By.xpath("*//div[3]/div[3]/div/h2"));
+        List<WebElement> checkBox = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
         for (WebElement checkBoxNotSelected : checkBox) {
             assertFalse(checkBoxNotSelected.isSelected());
         }
@@ -109,21 +109,18 @@ public class Sample7Task {
 
 
 //        check that selected option is "Option 3"
-        assertTrue(dropdownList.getFirstSelectedOption().isSelected());
         assertEquals("Option 3", dropdownList.getFirstSelectedOption().getText());
+//        assertTrue(dropdownList.getFirstSelectedOption().isSelected());
 
 //        select "Option 2" in Select
         dropdownList.selectByVisibleText("Option 2");
-
 //        dropdownList.selectByIndex(2);
 
 
 //        check that selected option is "Option 2"
         assertEquals(1, dropdownList.getAllSelectedOptions().size());
         assertEquals("Option 2", dropdownList.getAllSelectedOptions().get(0).getText());
-
 //        assertTrue(dropdownList.getFirstSelectedOption().isSelected());
-
 
 //        click result
         driver.findElement(By.id("result_button_select")).click();
