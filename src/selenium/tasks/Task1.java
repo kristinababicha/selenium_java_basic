@@ -3,10 +3,15 @@ package selenium.tasks;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
+
+import static org.junit.Assert.assertEquals;
 
 public class Task1 {
     WebDriver driver;
@@ -26,9 +31,15 @@ public class Task1 {
     }
 
     @Test
-    public void errorOnText() {
+    public void errorOnText() throws Exception{
 //        TODO
 //        enter a text instead of a number, check that correct error is seen
+        WebElement textField=driver.findElement(By.id("numb"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement error = driver.findElement(By.xpath("//p[@id='ch1_error']"));
+        textField.sendKeys("Test");
+        submitButton.click();
+        assertEquals("Please enter a number",error.getText());
     }
 
     @Test
@@ -36,6 +47,12 @@ public class Task1 {
 //        BUG: if I enter number 49 or 42 no errors where seen
 //        TODO
 //        enter number which is too small (positive number below 50), check that correct error is seen
+        WebElement textField=driver.findElement(By.id("numb"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement error = driver.findElement(By.xpath("//p[@id='ch1_error']"));
+        textField.sendKeys("35");
+        submitButton.click();
+        assertEquals("Number is too small",error.getText());
     }
 
     @Test
@@ -44,12 +61,25 @@ public class Task1 {
 //        BUG: if I enter number 666 no errors where seen
 //        TODO
 //        enter number which is too big (above 100), check that correct error is seen
+        WebElement textField=driver.findElement(By.id("numb"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement error = driver.findElement(By.xpath("//p[@id='ch1_error']"));
+        textField.sendKeys("105");
+        submitButton.click();
+        assertEquals("Number is too big",error.getText());
     }
 
     @Test
     public void correctSquareRoot() {
 //        TODO
 //        enter a number between 50 and 100 digit in the input, then press submit
+        WebElement textField=driver.findElement(By.id("numb"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        textField.sendKeys("75");
+        submitButton.click();
+        Alert alert=driver.switchTo().alert();
+        assertEquals("Square root of 75 is 8.66",alert.getText());
+        alert.accept();
 //        and check that no error is seen and that square root is calculated correctly
 //        NOTE: input value is hardcoded, but square root used in assertions should be calculated in code
     }

@@ -36,6 +36,7 @@ public class extra1Task {
     public void navigateBack() throws Exception {
 //        TODO
 //        open page with url "https://kristinek.github.io/site/examples/po"
+
 //        click "More > " for the top left element
 //        check that the url now "https://kristinek.github.io/site/examples/po1"
 //        using driver navigation go back to "https://kristinek.github.io/site/examples/po"
