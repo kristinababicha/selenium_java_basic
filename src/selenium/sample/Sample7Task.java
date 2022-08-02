@@ -38,8 +38,12 @@ public class Sample7Task {
 
     @Test
     public void selectCheckBox() throws Exception {
+        List<WebElement> checkBoxes = driver.findElements(By.xpath("//@id='wfb-12'"));
 //         TODO:
 //        check that none of the checkboxes are ticked
+        for (WebElement checkBox : checkBoxes) {
+            assertFalse(checkBox.isSelected());
+        }
 //        tick  "Option 2"
 //        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
 //        tick  "Option 3"
@@ -50,6 +54,10 @@ public class Sample7Task {
 
     @Test
     public void selectRadioButton() throws Exception {
+//        List<WebElement> radioButtons = driver.findElements(By.cssSelector(".w3-check[type='radio']"));
+//        for (WebElement radioButton : radioButtons) {
+//            assertFalse(radioButton.isSelected());
+//        }
 //         TODO:
 //        check that none of the radio are selected
 //        select  "Option 3"

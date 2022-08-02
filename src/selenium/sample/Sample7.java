@@ -46,8 +46,10 @@ public class Sample7 {
         for (WebElement checkBox : checkBoxes) {
             assertFalse(checkBox.isSelected()); // checkboxes are NOT selected
             checkBox.click();
+            Thread.sleep(5000);
             assertTrue(checkBox.isSelected()); // checkboxes are selected
             checkBox.click();
+            Thread.sleep(5000);
             assertFalse(checkBox.isSelected()); // checkboxes are NOT selected
         }
 
