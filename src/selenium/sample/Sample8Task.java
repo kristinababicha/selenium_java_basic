@@ -5,12 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Sample8Task {
     WebDriver driver;
@@ -38,7 +37,10 @@ public class Sample8Task {
     public void styleChecks() throws Exception {
 //         TODO:
 //        check the background of top 2 sections
+        assertEquals("rgba(255, 221, 221, 1)", driver.findElement(By.className("w3-pale-red")).getCssValue("background-color"));
+        assertEquals("rgba(255, 255, 204, 1)", driver.findElement(By.className("w3-pale-yellow")).getCssValue("background-color"));
 //        rgba(255, 221, 221, 1);
 //        check h1 element font-size 64px
+        assertEquals("64px",driver.findElement(By.tagName("h1")).getCssValue("font-size"));
     }
 }
