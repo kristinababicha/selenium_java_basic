@@ -38,6 +38,41 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
+        WebElement input = driver.findElement(By.id("number"));
+        WebElement resBtn = driver.findElement(By.id("result_button_number"));
+        WebElement clearBtn = driver.findElement(By.id("clear_result_button_number"));
+        WebElement result_number = driver.findElement(By.id("result_number"));
+
+// NOT FOR BEST PRACTICE. MIGHT BE IGNORED!!!
+//        if(!clearBtn.isEnabled() && !result_number.isEnabled()){
+//            //my code
+//        }else{
+//            System.out.println("Smt wrong");
+//        }
+
+        input.clear(); //without it. the result will append
+
+
+        input.sendKeys("7");
+        assertFalse(clearBtn.isEnabled());
+        assertFalse(result_number.isDisplayed());
+//
+        assertTrue(resBtn.isEnabled());
+//        Thread.sleep(3000);
+        resBtn.click();
+
+        assertTrue(clearBtn.isEnabled());
+        assertTrue(result_number.isDisplayed());
+        assertTrue(resBtn.isEnabled());
+
+        assertEquals("7", input.getAttribute("value"));
+
+        clearBtn.click();
+//        Thread.sleep(3000);
+        assertFalse(clearBtn.isEnabled());
+        assertFalse(result_number.isDisplayed());
+        assertTrue(resBtn.isEnabled());
+
 //        check that button is not clickable "Clear Result"
 //        check that text is not displayed
 //        click on "Result" button
@@ -52,8 +87,12 @@ public class Sample4Task {
     public void clickOnLink() throws Exception {
 //         TODO:
 //        check current url is base_url
+        assertEquals(base_url, driver.getCurrentUrl());
 //        click on "This is a link to Homepage"
+        driver.findElement(By.id("homepage_link")).click();
 //        check that current url is not base_url
+        assertNotEquals(base_url, driver.getCurrentUrl());
 //        verify that current url is homepage
+        assertEquals("https://kristinek.github.io/site/", driver.getCurrentUrl());
     }
 }
