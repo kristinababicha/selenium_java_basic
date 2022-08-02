@@ -59,11 +59,13 @@ public class Sample5Task {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
         driver.findElement(By.className("w3-blue")). click();
+        // driver.findElement(By.tagName("button")).get (3).click(); the same as the line above
 
 //        switch to alert and click cancel
        driver.switchTo().alert(). dismiss();
 
 //        verify the text on page
-        assertEquals("https://kristinek.github.io/site/examples/alerts_popups", driver.getCurrentUrl());
+        String displayedText = "So you desided to say? Good!";
+        assertEquals(displayedText, driver.findElement(By.id("textForAlerts")). getText());
     }
 }
