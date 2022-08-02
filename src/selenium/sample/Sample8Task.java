@@ -37,8 +37,18 @@ public class Sample8Task {
     @Test
     public void styleChecks() throws Exception {
 //         TODO:
+        String bg1 = driver.findElement(By.className("w3-pale-red")).getCssValue("background-color");
+        String bg2 = driver.findElement(By.className("w3-pale-yellow")).getCssValue("background-color");
+        String font = driver.findElement(By.cssSelector("h1.w3-jumbo")).getCssValue("font-size");
+        System.out.println(bg1);
+        System.out.println(bg2);
+        System.out.println(font);
 //        check the background of top 2 sections
 //        rgba(255, 221, 221, 1);
+        assertEquals("rgba(255, 221, 221, 1)", bg1);
+        assertEquals("rgba(255, 255, 204, 1)", bg2);
 //        check h1 element font-size 64px
+        assertEquals("64px",font);
+
     }
 }
