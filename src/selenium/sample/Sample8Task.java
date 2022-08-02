@@ -20,7 +20,7 @@ public class Sample8Task {
     public void startingTests() throws Exception {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+       // System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
         // declaration above:
         driver = new ChromeDriver();
 
@@ -38,7 +38,24 @@ public class Sample8Task {
     public void styleChecks() throws Exception {
 //         TODO:
 //        check the background of top 2 sections
-//        rgba(255, 221, 221, 1);
+        //      rgba(255, 221, 221, 1);
+
+
+        String checkStyle=driver.findElement(By.className("w3-pale-red")).getCssValue("background-color");
+        assertEquals("rgba(255, 221, 221, 1)",checkStyle);
+
+
+
+
+        String style=driver.findElement(By.className("w3-pale-yellow")).getCssValue("background-color");
+        assertEquals("rgba(255, 255, 204, 1)",style);
+
+
 //        check h1 element font-size 64px
+
+        String checkSize= driver.findElement(By.tagName("h1")).getCssValue("font-size");
+
+        assertEquals("64px",checkSize);
+
     }
 }
