@@ -113,7 +113,16 @@ public class Sample7Task {
 //         TODO:
 //          enter date '4 of July 2007' using calendar widget
 //          check that correct date is added
-
+        driver.findElement(By.id("vfb-8")).click();
+        String target_date = "July 2007";
+        String current_date = driver.findElement(By.className("ui-datepicker-month")).getText() + " " + driver.findElement(By.className("ui-datepicker-year")).getText();
+        while (!current_date.equals(target_date)) {
+            driver.findElement(By.className("ui-icon-circle-triangle-w")).click();
+            current_date = driver.findElement(By.className("ui-datepicker-month")).getText() + " " + driver.findElement(By.className("ui-datepicker-year")).getText();
+        }
+        driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[1]/td[4]/a")).click();
+        driver.findElement(By.id("result_button_date")).click();
+        assertEquals("You entered date: 07/04/2007", driver.findElement(By.id("result_date")).getText());
     }
 
     @Test

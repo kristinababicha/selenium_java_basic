@@ -66,7 +66,7 @@ public class Task1 {
 //         enter a number between 50 and 100 digit in the input, then press submit
 //         and check that no error is seen and that square root is calculated correctly
 //         NOTE: input value is hardcoded, but square root used in assertions should be calculated in code
-        String square = "64";
+        String square = "100";
         double double_square = Double.parseDouble(square);
         double root = Math.sqrt(double_square);
         driver.findElement(By.id("numb")).sendKeys(square);
