@@ -12,8 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class Sample9Task {
     WebDriver driver;
@@ -28,18 +27,25 @@ public class Sample9Task {
 
     @After
     public void closeBrowser() {
-        driver.close();
+       // driver.close();
     }
 
     @Test
     public void loadGreenSleep() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        driver.findElement(By.id("start_green")).click();
+        //Thread.sleep(5000);
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
 //         * but loading text is seen instead   "Loading green..."
+        assertEquals("Loading green...", driver.findElement(By.id("loading_green")).getText());
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        Thread.sleep(10000);
+        assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
+        assertEquals("Green Loaded", driver.findElement(By.id("finish_green")).getText());
     }
 
     @Test
