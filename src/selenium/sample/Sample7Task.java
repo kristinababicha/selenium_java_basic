@@ -39,35 +39,78 @@ public class Sample7Task {
     @Test
     public void selectCheckBox() throws Exception {
 //         TODO:
-//        check that none of the checkboxes are ticked
-//        tick  "Option 2"
-//        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
+//        check that none of the checkboxes are ticked (is selected()), assertFalse (is selected for), better to check as a list
+//       List<WebElement> checkBoxes = driver.findElements(By.cssSelector(".w3"));
+//       for (WebElement checkBox : checkBoxes) {
+//           assertFalse("Null", checkBox.isSelected());
+//       }
+        List<WebElement> checkBoxes = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
+        for (WebElement checkBox : checkBoxes) {
+            assertFalse(checkBox.isSelected()); // checkboxes are NOT selected
+            checkBox.click();
+
+        }
+
+        WebElement option3 = driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='checkbox']"));
+        WebElement option2= driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='checkbox']"));
+        option2.click();
+        option3.click();
+//        assertTrue(option3.isSelected());
+        driver.findElement(By.cssSelector("#result_button_checkbox")).click();
+        Thread.sleep(5000);
+
+
+//        tick  "Option 2" , tick option 2
+
+//        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked, AssertTrue or assertFalse
 //        tick  "Option 3"
 //        click result
-//        check that text 'You selected value(s): Option 2, Option 3' is being displayed
+//        check that text 'You selected value(s): Option 2, Option 3' is being displayed, AssertEquals
     }
 
 
     @Test
     public void selectRadioButton() throws Exception {
 //         TODO:
-//        check that none of the radio are selected
-//        select  "Option 3"
-//        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
+//        check that none of the radio are selected , is selected (), assertFalse.
+        List<WebElement> elems = driver.findElements(By.xpath("//*[@type=\"radio\"]"));
+        for (WebElement elem : elems) {
+            assertFalse(elem.isSelected());
+        }
+//        select  "Option 3",
+        elems.get(2).click();
+//        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected assertfalse and assert ture
+        assertFalse(elems.get(0).isSelected());
+        assertFalse(elems.get(1).isSelected());
+        assertTrue(elems.get(2).isSelected());
 //        select  "Option 1"
-//        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
+        elems.get(0).click();
+//        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected , again assertions
+        assertFalse(elems.get(1).isSelected());
+        assertFalse(elems.get(2).isSelected());
+        assertTrue(elems.get(0).isSelected());
 //        click result
-//        check that 'You selected option: Option 1' text is being displayed
+        driver.findElement(By.id("result_button_ratio")).click();
+//        check that 'You selected option: Option 1' text is being displayed. isDisplayed
+        assertEquals ("You selected option: Option 1",driver.findElement(By.id("result_radio")).getText());
     }
 
     @Test
     public void selectOption() throws Exception {
-//        select "Option 3" in Select
-//        check that selected option is "Option 3"
+//        select "Option 3" in Select, first find element Dropdown. Than we define element, with class select.(single line)
+        Select dropdown = new Select(driver.findElement(By.id("vfb-12")));
+//        check that selected option is "Option 3" (select by Index, or by value)
+        dropdown.selectByVisibleText("Option 3");
+        assertEquals("Option 3", dropdown.getFirstSelectedOption().getText());
 //        select "Option 2" in Select
+        dropdown.selectByVisibleText("Option 2");
 //        check that selected option is "Option 2"
+        assertEquals(1, dropdown.getAllSelectedOptions().size());
+        assertEquals("Option 2", dropdown.getAllSelectedOptions().get(0).getText());
 //        click result
+        driver.findElement(By.id("result_button_select")).click();
 //        check that 'You selected option: Option 2' text is being displayed
+        assertEquals("You selected option: Option 2", driver.findElement(By.id("result_select")).getText());
     }
 
     @Test
@@ -75,6 +118,7 @@ public class Sample7Task {
 //         TODO:
 //        enter date '4 of July 2007' using calendar widget
 //        check that correct date is added
+        //select a specific date in date picker,
     }
 
     @Test

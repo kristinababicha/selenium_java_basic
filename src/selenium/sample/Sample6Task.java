@@ -69,6 +69,11 @@ public class Sample6Task {
 
     @Test
     public void findElementByCssName() throws Exception {
+
+
+
+        //https://www.w3schools.com/cssref/css_selectors.asp
+
 //         TODO:
 //        1-2 ways to find text: "Heading 2 text"
         System.out.println(driver.findElement(By.cssSelector("#heading_2")).getText());
