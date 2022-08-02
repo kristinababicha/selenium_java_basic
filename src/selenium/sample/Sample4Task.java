@@ -37,12 +37,22 @@ public class Sample4Task {
     @Test
     public void enterNumber() throws Exception {
 //         TODO:
-//        enter a number under "Number"
+//          enter a number under "Number"
+        String inputNumber = "44";
+        driver.findElement(By.id("number")).clear();
+        driver.findElement(By.id("number")).sendKeys(inputNumber);
 //        check that button is not clickable "Clear Result"
+        assertFalse(driver.findElement(By.id("clear_result_button_number")).isEnabled());
 //        check that text is not displayed
+        WebElement textUnderNumber = driver.findElement(By.id("result_number"));
+        assertFalse(textUnderNumber.isDisplayed());
 //        click on "Result" button
+        WebElement button2 = driver.findElement(By.id("result_button_number"));
+        button2.click();
 //        check that text is displayed
+        assertTrue(textUnderNumber.isDisplayed());
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+
 //        check that the button "Clear Result" is clickable now
 //        click on "Clear Result"
 //        check that the text is now (""), but it is not displayed
