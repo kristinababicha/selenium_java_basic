@@ -36,6 +36,7 @@ public class Task1 {
         driver.findElement(By.id("numb")).clear();
         driver.findElement(By.id("numb")).sendKeys("text");
         driver.findElement(By.xpath("//button[text()='Submit']")).click();
+        assertTrue(driver.findElement(By.id("ch1_error")).isDisplayed());
         assertEquals("Please enter a number", driver.findElement(By.id("ch1_error")).getText());
     }
 
@@ -47,6 +48,7 @@ public class Task1 {
         driver.findElement(By.id("numb")).clear();
         driver.findElement(By.id("numb")).sendKeys("48");
         driver.findElement(By.xpath("//button[text()='Submit']")).click();
+        assertTrue(driver.findElement(By.id("ch1_error")).isDisplayed());
         assertEquals("Number is too small", driver.findElement(By.id("ch1_error")).getText());
     }
 
@@ -59,6 +61,7 @@ public class Task1 {
         driver.findElement(By.id("numb")).clear();
         driver.findElement(By.id("numb")).sendKeys("123");
         driver.findElement(By.xpath("//button[text()='Submit']")).click();
+        assertTrue(driver.findElement(By.id("ch1_error")).isDisplayed());
         assertEquals("Number is too big", driver.findElement(By.id("ch1_error")).getText());
     }
 
