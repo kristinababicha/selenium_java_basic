@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.awt.*;
 import java.io.File;
 import java.util.List;
 
@@ -40,11 +41,29 @@ public class Sample7Task {
     public void selectCheckBox() throws Exception {
 //         TODO:
 //        check that none of the checkboxes are ticked
+        WebElement resultBtn = driver.findElement(By.cssSelector("#result_button_checkbox"));
+        WebElement resultTxt = driver.findElement(By.cssSelector("#result_checkbox"));
+        WebElement checkbox1 = driver.findElement(By.cssSelector("input[value='Option 1']"));
+        WebElement checkbox2 = driver.findElement(By.cssSelector("input[value='Option 2']"));
+        WebElement checkbox3 = driver.findElement(By.cssSelector("input[value='Option 3']"));
+        System.out.println("The checkbox1 is selection state is - " + checkbox1.isSelected());
+        System.out.println("The checkbox2 is selection state is - " + checkbox2.isSelected());
+        System.out.println("The checkbox3 is selection state is - " + checkbox3.isSelected());
 //        tick  "Option 2"
+        checkbox2.click();
+        Thread.sleep(2000);
 //        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
+        assertFalse(checkbox1.isSelected());
+        assertFalse(checkbox3.isSelected());
+        assertTrue(checkbox2.isSelected());
 //        tick  "Option 3"
+        checkbox3.click();
+        Thread.sleep(2000);
 //        click result
+        resultBtn.click();
+        Thread.sleep(2000);
 //        check that text 'You selected value(s): Option 2, Option 3' is being displayed
+        assertEquals("You selected value(s): Option 2, Option 3", resultTxt.getText());
     }
 
 
@@ -52,22 +71,56 @@ public class Sample7Task {
     public void selectRadioButton() throws Exception {
 //         TODO:
 //        check that none of the radio are selected
+        WebElement radio1 = driver.findElement(By.cssSelector("#vfb-7-1"));
+        WebElement radio2 = driver.findElement(By.cssSelector("#vfb-7-2"));
+        WebElement radio3 = driver.findElement(By.cssSelector("#vfb-7-3"));
+        WebElement btnResult = driver.findElement(By.cssSelector("#result_button_ratio"));
+        WebElement resultTxt = driver.findElement(By.cssSelector("#result_radio"));
+
+//        System.out.println("The radio1 is selection state is - " + radio1.isSelected());
+//        System.out.println("The radio2 is selection state is - " + radio2.isSelected());
+//        System.out.println("The radio3 is selection state is - " + radio3.isSelected());
+        assertFalse(radio1.isSelected());
+        assertFalse(radio2.isSelected());
+        assertFalse(radio3.isSelected());
 //        select  "Option 3"
+        radio3.click();
+        Thread.sleep(2000);
 //        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
+        assertFalse(radio1.isSelected());
+        assertFalse(radio2.isSelected());
+        assertTrue(radio3.isSelected());
 //        select  "Option 1"
+        radio1.click();
+        Thread.sleep(2000);
 //        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
+        assertTrue(radio1.isSelected());
+        assertFalse(radio2.isSelected());
+        assertFalse(radio3.isSelected());
 //        click result
+        btnResult.click();
+        Thread.sleep(2000);
 //        check that 'You selected option: Option 1' text is being displayed
+        assertEquals("You selected option: Option 1",resultTxt.getText());
     }
 
     @Test
     public void selectOption() throws Exception {
+        Select select = new Select(driver.findElement(By.cssSelector("#vfb-12")));
+        WebElement rbtn = driver.findElement(By.cssSelector("#result_button_select"));
+        WebElement txtDisplayed = driver.findElement(By.cssSelector("#result_select"));
 //        select "Option 3" in Select
+        select.selectByValue("value3");
 //        check that selected option is "Option 3"
+        assertEquals("Option 3",select.getFirstSelectedOption().getText());
 //        select "Option 2" in Select
+        select.selectByValue("value2");
 //        check that selected option is "Option 2"
+        assertEquals("Option 2",select.getFirstSelectedOption().getText());
 //        click result
+        rbtn.click();
 //        check that 'You selected option: Option 2' text is being displayed
+        assertEquals("You selected option: Option 2", txtDisplayed.getText());
     }
 
     @Test
@@ -82,5 +135,14 @@ public class Sample7Task {
 //         TODO:
 //        enter date '2 of May 1959' using text
 //        check that correct date is added
+        WebElement dateField = driver.findElement(By.cssSelector("#vfb-8"));
+        WebElement resBtn = driver.findElement(By.cssSelector("#result_button_date"));
+        WebElement resTxt = driver.findElement(By.cssSelector("#result_date"));
+        dateField.sendKeys("02/05/1959");
+        driver.findElement(By.cssSelector("body")).click();
+        Thread.sleep(1000);
+        resBtn.click();
+        Thread.sleep(1000);
+        assertEquals("You entered date: 02/05/1959",resTxt.getText());
     }
 }
