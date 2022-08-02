@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -40,11 +42,23 @@ public class Sample7Task {
     public void selectCheckBox() throws Exception {
 //         TODO:
 //        check that none of the checkboxes are ticked
+        assertFalse(driver.findElement(By.id("vfb-6-0")).isSelected());
+        assertFalse(driver.findElement(By.id("vfb-6-1")).isSelected());
+        assertFalse(driver.findElement(By.id("vfb-6-2")).isSelected());
 //        tick  "Option 2"
+        driver.findElement(By.id("vfb-6-1")).click();
 //        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
+        assertFalse(driver.findElement(By.id("vfb-6-0")).isSelected());
+        assertTrue(driver.findElement(By.id("vfb-6-1")).isSelected());
+        assertFalse(driver.findElement(By.id("vfb-6-2")).isSelected());
+
 //        tick  "Option 3"
+        driver.findElement(By.id("vfb-6-2")).click();
+
 //        click result
+        driver.findElement(By.id("result_button_checkbox")).click();
 //        check that text 'You selected value(s): Option 2, Option 3' is being displayed
+        assertEquals("You selected value(s): Option 2, Option 3", driver.findElement(By.id("result_checkbox")).getText());
     }
 
 
@@ -52,22 +66,45 @@ public class Sample7Task {
     public void selectRadioButton() throws Exception {
 //         TODO:
 //        check that none of the radio are selected
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@type=\"radio\"]"));
 //        select  "Option 3"
+        for (WebElement element:elements){
+            assertFalse(element.isSelected());
+        }
+        elements.get(2).click();
 //        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
+assertFalse(elements.get(0).isSelected());
+        assertFalse(elements.get(1).isSelected());
+        assertTrue(elements.get(2).isSelected());
 //        select  "Option 1"
+        elements.get(0).click();
 //        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
+        assertTrue(elements.get(0).isSelected());
+        assertFalse(elements.get(1).isSelected());
+        assertFalse(elements.get(2).isSelected());
+
 //        click result
+        driver.findElement(By.id("result_button_ratio")).click();
 //        check that 'You selected option: Option 1' text is being displayed
-    }
+  assertEquals("You selected option: Option 1",
+          driver.findElement(By.id("result_radio")).getText());
+   }
 
     @Test
     public void selectOption() throws Exception {
 //        select "Option 3" in Select
+        Select dropdown = new Select(driver.findElement(By.id("vfb-12")));
+dropdown.selectByVisibleText("Option 3");
 //        check that selected option is "Option 3"
+assertEquals("Option 3", dropdown.getFirstSelectedOption().getText());
 //        select "Option 2" in Select
+        dropdown.selectByVisibleText("Option 2");
 //        check that selected option is "Option 2"
+        assertEquals(1,dropdown.getAllSelectedOptions().size());
 //        click result
+        driver.findElement(By.id("result_button_select")).click();
 //        check that 'You selected option: Option 2' text is being displayed
+   assertEquals("You selected option: Option 2", driver.findElement(By.id("result_select")).getText());
     }
 
     @Test
@@ -75,12 +112,32 @@ public class Sample7Task {
 //         TODO:
 //        enter date '4 of July 2007' using calendar widget
 //        check that correct date is added
+
+        WebElement dateBox = driver.findElement(By.id("vfb-8"));
+        assertEquals("", dateBox.getAttribute("value"));
+
+        dateBox.click();
+        WebElement dateWidget = driver.findElement(By.id("ui-datepicker-div"));
+
+        for (int i = 0; i < 182; i++) {
+            dateWidget.findElement(By.className("ui-datepicker-prev")).click();
+        }
+        dateWidget.findElement(By.xpath("//a[text()='04']")).click();
+
+        assertEquals("04/07/2007", dateBox.getText());
     }
+
 
     @Test
     public void chooseDateViaTextBoxBonus() throws Exception {
 //         TODO:
 //        enter date '2 of May 1959' using text
 //        check that correct date is added
+        WebElement dateToEnter = driver.findElement(By.id("vfb-8"));
+        dateToEnter.click();
+        dateToEnter.sendKeys("02/05/1959");
+        driver.findElement(By.id("result_button_date")).click();
+        assertEquals("You entered date: 02/05/1959", driver.findElement(By.id("result_button_date")).getText());
+
     }
 }
