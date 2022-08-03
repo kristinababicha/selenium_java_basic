@@ -120,25 +120,27 @@ public class Sample7Task {
         //Thread.sleep(2000);
 
                 String monthyearvalue=driver.findElement(By.className("ui-datepicker-title")).getText();
+                String daychoose=driver.findElement(By.className("ui-datepicker-calendar")).getText();
               // System.out.println(monthyearvalue);
         String month =monthyearvalue.split("")[0].trim();
         String year=monthyearvalue.split("")[1].trim();
-        while (!(month.equals("july")&&year.equals("2007"))){
+        String day=daychoose.split(" ")[3].trim();
+        while (!(month.equals("July")&&year.equals("2007"))){
             driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[1]/span")).click();
-           monthyearvalue=driver.findElement(By.className("ui-datepicker-title")).getText();
-             month =monthyearvalue.split("")[0].trim();
-               year=monthyearvalue.split("")[1].trim();
-            System.out.println(monthyearvalue);
+              monthyearvalue=driver.findElement(By.className("ui-datepicker-title")).getText();
+              month =monthyearvalue.split(" ")[0].trim();
+               year=monthyearvalue.split(" ")[1].trim();
+               day=daychoose.split(" ")[3].trim();
+
+
+
+
+           // driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[2]/td[2]/a"));
 
 }
+        Thread.sleep(3000);
 
 
-
-
-
-
-
-       // }
 
 
 //        check that correct date is added
