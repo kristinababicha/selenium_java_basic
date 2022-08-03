@@ -132,7 +132,6 @@ public class Sample9Task {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_blue_without_green")));
         assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
         assertFalse(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
-
         assertTrue(driver.findElement(By.id("loading_green_with_blue")).isDisplayed());
         assertTrue(driver.findElement(By.id("loading_blue_without_green")).isDisplayed());
 
