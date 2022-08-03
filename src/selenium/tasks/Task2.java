@@ -48,7 +48,8 @@ public class Task2 {
         }
 
         assertTrue(driver.findElement(By.cssSelector("#fb_form > form > div:nth-child(4) > input:nth-child(6)")).isSelected());
-        assertEquals("Choose your option", driver.findElement(By.cssSelector("#like_us > option:nth-child(1)")).getText());
+
+        assertTrue(driver.findElement(By.cssSelector("#like_us > option:nth-child(1)")).isSelected());
 
         assertEquals("rgba(33, 150, 243, 1)", driver.findElement(By.className("w3-blue")).getCssValue("background-color"));
         assertEquals("rgba(255, 255, 255, 1)", driver.findElement(By.className("w3-blue")).getCssValue("color"));
@@ -162,6 +163,11 @@ public class Task2 {
         assertEquals("Karline", driver.findElement(By.xpath("//input[@type='text']")).getAttribute("value"));
         assertEquals("23", driver.findElement(By.xpath("//input[@type='number']")).getAttribute("value"));
         assertTrue(driver.findElement(By.xpath("//input[@value='English']")).isSelected());
+
+        assertFalse(driver.findElement(By.xpath("//input[@value='French']")).isSelected());
+        assertFalse(driver.findElement(By.xpath("//input[@value='Spanish']")).isSelected());
+        assertFalse(driver.findElement(By.xpath("//input[@value='Chinese']")).isSelected());
+
         assertTrue(driver.findElement(By.xpath("//input[@value='female']")).isSelected());
         assertEquals("Ok, i guess", driver.findElement(By.id("like_us")).getAttribute("value"));
         assertEquals("No comments", driver.findElement(By.xpath("//textarea[@name='comment']")).getAttribute("value"));
