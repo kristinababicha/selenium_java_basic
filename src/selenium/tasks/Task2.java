@@ -72,6 +72,7 @@ public class Task2 {
         assertEquals("null", driver.findElement(By.id("option")).getText());
         assertEquals("", driver.findElement(By.id("comment")).getText());
 
+
 //         check button colors:
 //         green with white letter
         assertEquals("rgba(76, 175, 80, 1)", driver.findElement(By.className("w3-green")).getCssValue("background-color"));
