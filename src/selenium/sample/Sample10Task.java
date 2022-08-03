@@ -47,6 +47,9 @@ public class Sample10Task {
 //         * but loading text is seen instead   "Loading green..."
         colorPage.startLoadingGreenTextVisible();
 
+//        in case if used boolean in other solution
+//        assertTrue(colorPage.startLoadingGreenTextVisible());
+
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
