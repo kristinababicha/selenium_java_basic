@@ -54,6 +54,9 @@ public class Sample10Task {
         colorPage.startLoadingGreenTextNotVisible();
         colorPage.startLoadingGreenNotVisible();
 
+//        in case if used boolean in other solution
+//        assertFalse(colorPage.startLoadingGreenTextVisible());
+
     }
 
 }
