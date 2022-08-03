@@ -65,7 +65,7 @@ public class Sample9Task {
 //         * success is seen instead "Green Loaded"
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        Assert.assertTrue(driver.findElement(By.id("finish_green")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.id("finish_green")).isDisplayed()); //there's some order meaning
         Assert.assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
         Assert.assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
     }
@@ -106,18 +106,21 @@ public class Sample9Task {
 
 //          3) check that button does not appear, but loading text is seen instead for green and blue
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_green_with_blue")));
-        //wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("loading_green_with_blue"))));//isDisplayed but not existing
+        //wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("loading_green_with_blue")))); //isDisplayed but not existing
+        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
         assertTrue(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
         assertTrue(driver.findElement(By.id("loading_green_with_blue")).isDisplayed());
 
 //          4) check that button and loading green does not appear,
 //          		but loading text is seen instead for blue and success for green is seen
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_blue_without_green")));
+        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
         assertFalse(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
         assertTrue(driver.findElement(By.id("loading_green_with_blue")).isDisplayed());
 
 //          5) check that both button and loading text is not seen, success is seen instead
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("finish_green_and_blue")));
+        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
         assertFalse(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
         assertFalse(driver.findElement(By.id("loading_green_with_blue")).isDisplayed());
         assertTrue(driver.findElement(By.id("finish_green_and_blue")).isDisplayed());

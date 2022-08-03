@@ -11,6 +11,9 @@ import selenium.pages.ColorSamplePage;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class Sample10Task {
     static WebDriver driver;
     static ColorSamplePage colorPage;
@@ -33,6 +36,12 @@ public class Sample10Task {
     @Test
     public void loadGreenSleep() throws Exception {
 //         TODO:
+        colorPage.clickStartLoadingGreen();
+        assertFalse(colorPage.btnVisible());
+        assertTrue(colorPage.loadingVisible(true));
+        assertFalse(colorPage.loadingVisible(false));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue(colorPage.textVisible(true));
 //         Use page object ColorSamplePage
 //         * 1) click on start loading green button
 //         * 2) check that button does not appear,
@@ -40,6 +49,8 @@ public class Sample10Task {
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+
+        //Janis's version
     }
 
 }
