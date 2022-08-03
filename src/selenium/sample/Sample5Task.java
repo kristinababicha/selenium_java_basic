@@ -6,12 +6,17 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author vigneshkrishnan
+ */
 public class Sample5Task {
     WebDriver driver;
 
@@ -37,20 +42,38 @@ public class Sample5Task {
     public void goToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        WebElement alertPageViaButton = driver.findElement(By.xpath("//button[text() = 'To go to alerted page press Ok. Or stay here']"));
+        alertPageViaButton.click();
+
 //        switch to alert
 //        click ok
+        Alert al = driver.switchTo().alert();
+        al.accept();
+
 //        switch to second alert
 //        verify alert text
-//        click ok on second alert
-//        verify that the correct page is opened
-    }
+        assertEquals("Booooooooo!",driver.switchTo().alert().getText());
 
+        //click ok on second alert
+        Alert al1 = driver.switchTo().alert();
+        // click on OK to accept with accept()
+        al1.accept();
+       // driver.switchTo().alert().accept();
+//        verify that the correct page is opened
+        assertEquals("https://kristinek.github.io/site/examples/alerted_page",driver.getCurrentUrl());
+    }
     @Test
     public void doNotGoToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.xpath("//button[text()='To go to alerted page press Ok. Or stay here']")).click();
 //        switch to alert
 //        click cancel
+        driver.switchTo().alert().dismiss();
+
 //        verify the text on page
+        String text = "So you desided to say? Good! ";
+        assertEquals("text",driver.findElement(By.id("textForAlerts")).getText());
+
     }
 }
