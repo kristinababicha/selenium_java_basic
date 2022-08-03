@@ -29,23 +29,29 @@ public class ColorSamplePage extends GenericSamplePage {
 //         TODO
 //         Implement methods for:
 //         * 1) check that "Start loading green" button is not visible
-//         * 2) check that text "Loading green..." is visible
+
 
     public void startLoadingGreenNotVisible() {
         assertFalse(startGreen.isDisplayed());
 
     }
 
-    //         * 3) check that text "Loading green..." is not visible
+//         * 2) check that text "Loading green..." is visible
     public void startLoadingGreenTextVisible() {
         assertTrue(loadingGreen.isDisplayed());
         assertEquals("Loading green...", loadingGreen.getText());
+    }
+
+//         * 3) check that text "Loading green..." is not visible
+    public void startLoadingGreenTextNotVisible() {
+        assertFalse(loadingGreen.isDisplayed());
+        assertEquals("", loadingGreen.getText());
 
     }
 
-    //         * 4) check that text "Green Loaded" is visible
+//         * 4) check that text "Green Loaded" is visible
 
-        public void finishGreenVisible() {
+    public void finishGreenVisible() {
         assertTrue(finishGreen.isDisplayed());
         assertEquals("Green Loaded", finishGreen.getText());
     }

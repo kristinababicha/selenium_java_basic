@@ -51,6 +51,7 @@ public class Sample10Task {
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
         colorPage.finishGreenVisible();
+        colorPage.startLoadingGreenTextNotVisible();
         colorPage.startLoadingGreenNotVisible();
 
     }
