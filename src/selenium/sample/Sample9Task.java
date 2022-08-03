@@ -115,6 +115,7 @@ public class Sample9Task {
        // 2 way
 //        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver,10);
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("start_green_and_blue")));
+//        //wait.until(ExpectedConditions.elementToBeClickable(By.id("start_green_and_blue")));
 //        driver.findElement(By.id("start_green_and_blue")).click();
 //
 //        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
