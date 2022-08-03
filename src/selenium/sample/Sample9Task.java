@@ -35,33 +35,58 @@ public class Sample9Task {
     public void loadGreenSleep() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        driver.findElement(By.id("start_green")).click();
+        Thread.sleep(1000);
 //         * 2) check that button does not appear,
-//         * but loading text is seen instead   "Loading green..."
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+        Thread.sleep(1000); //if too long will not start next part
+//         * but loading text is seen instead   "Loading green..."\
+        assertTrue(driver.findElement(By.id("loading_green")).isDisplayed());
+        Thread.sleep(5000);
 //         * 3) check that both button
 //         * and loading text is not seen,
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
 //         * success is seen instead "Green Loaded"
+        assertTrue(driver.findElement(By.id("finish_green")).isDisplayed());
     }
 
     @Test
     public void loadGreenImplicit() throws Exception {
 //         TODO:
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //         * 1) click on start loading green button
+        driver.findElement(By.id("start_green")).click();
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(driver.findElement(By.id("loading_green")).isDisplayed());
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        assertTrue(driver.findElement(By.id("finish_green")).isDisplayed()); //need to be first because it will execute later
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
     }
 
     @Test
     public void loadGreenExplicitWait() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        driver.findElement(By.id("start_green")).click();
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(driver.findElement(By.id("loading_green")).isDisplayed());
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("finish_green")));
+
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
+        assertTrue(driver.findElement(By.id("finish_green")).isDisplayed());
     }
 
     @Test
