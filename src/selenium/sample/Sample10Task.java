@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.ColorSamplePage;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -34,12 +35,19 @@ public class Sample10Task {
     public void loadGreenSleep() throws Exception {
 //         TODO:
 //         Use page object ColorSamplePage
+
 //         * 1) click on start loading green button
+colorPage.clickStartLoadingGreen();
 //         * 2) check that button does not appear,
-//         * but loading text is seen instead   "Loading green..."
+colorPage.loadingNotvis();
+//         * but loading text is seen instead   "Loading green..
+assertTrue(colorPage.loadingIsVis());
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+colorPage.finish();
+colorPage.loadingNotvis();
+assertFalse(colorPage.loadingIsVis());
     }
 
 }
