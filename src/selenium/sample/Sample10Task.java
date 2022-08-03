@@ -10,6 +10,7 @@ import selenium.pages.ColorSamplePage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
+import static org.junit.Assert.*;
 
 public class Sample10Task {
     static WebDriver driver;
@@ -34,10 +35,19 @@ public class Sample10Task {
     public void loadGreenSleep() throws Exception {
 //         TODO:
 //         Use page object ColorSamplePage
+
 //         * 1) click on start loading green button
+        colorPage.clickStartLoadingGreen();
 //         * 2) check that button does not appear,
+        colorPage.startLoadingGreenNotVisible();
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(colorPage.loadingGreenVisible());
 //         * 3) check that both button
+
+        colorPage.finishGreenVisible();
+        colorPage.startLoadingGreenNotVisible();
+        assertFalse(colorPage.loadingGreenVisible());
+
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
     }
