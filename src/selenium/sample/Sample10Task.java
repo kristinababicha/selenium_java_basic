@@ -1,17 +1,22 @@
 package selenium.sample;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.ColorSamplePage;
-
+import selenium.pages.GenericSamplePage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import static org.junit.Assert.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-public class Sample10Task {
+public class Sample10Task  extends GenericSamplePage {
     static WebDriver driver;
     static ColorSamplePage colorPage;
 
@@ -32,14 +37,19 @@ public class Sample10Task {
 
     @Test
     public void loadGreenSleep() throws Exception {
-//         TODO:
-//         Use page object ColorSamplePage
 //         * 1) click on start loading green button
+        colorPage.clickStartLoadingGreen();
 //         * 2) check that button does not appear,
+        colorPage.startLoadNotVisible();
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(colorPage.loadingVisible());
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
-    }
+        colorPage.finishVisible();
+        colorPage.startLoadNotVisible();
+        assertFalse(colorPage.loadingVisible());
+                    }
 
 }
+
