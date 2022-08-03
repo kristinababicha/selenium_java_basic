@@ -12,14 +12,48 @@ public class ColorSamplePage extends GenericSamplePage {
 //         Define elements in page
 //         see https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/FindBy.html
 
+    @FindBy(id="start_green") WebElement startGreen;
+    @FindBy(id="loading_green") WebElement loadingGreen;
+    @FindBy(id="finish_green") WebElement finishGreen;
+
+
     public void clickStartLoadingGreen() {
 //         TODO:
 //         implement clicking on "Start loading green" button
+        startGreen.click();
+
     }
+    public void assertStartLoadingGreenNotVisible() {
+
+        assertFalse(startGreen.isDisplayed());
+    }
+
+    public boolean isLoadingGreenVisible() {
+
+        return loadingGreen.isDisplayed();
+
+    }
+    public void assertLoadingGreenIsVisible() {
+
+        assertFalse(isLoadingGreenVisible());
+    }
+
+    public void assertLoadingGreenNotVisible() {
+
+        assertFalse(startGreen.isDisplayed());
+    }
+
+    public void assertFinishGreenIsVisible() {
+
+        assertFalse(finishGreen.isDisplayed());
+    }
+
 
 //         TODO
 //         Implement methods for:
 //         * 1) check that "Start loading green" button is not visible
+
+
 //         * 2) check that text "Loading green..." is visible
 //         * 3) check that text "Loading green..." is not visible
 //         * 4) check that text "Green Loaded" is visible
