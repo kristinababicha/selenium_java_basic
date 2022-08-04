@@ -11,6 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.File;
 import java.util.List;
 
+/**
+ * @author vigneshkrishnan
+ */
 public class Sample2 {
     WebDriver driver;
 
