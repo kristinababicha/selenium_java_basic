@@ -193,5 +193,17 @@ public class Task2 {
         driver.findElement(By.className("w3-red")).click();
         Thread.sleep(1000);
 //         check fields are filled correctly
+//        assertEquals("Adam",driver.findElement(By.id("name")).getText());
+        assertEquals("Adam",driver.findElement(By.id("fb_name")).getAttribute("value"));
+//        assertEquals("20",driver.findElement(By.id("age")).getText());
+        assertEquals("20",driver.findElement(By.id("fb_age")).getAttribute("value"));
+//        assertEquals("English",driver.findElement(By.id("language")).getText());
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"lang_check\"]/input[1]")).isSelected());
+//        assertEquals("male",driver.findElement(By.id("gender")).getText());
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"fb_form\"]/form/div[4]/input[1]")).isSelected());
+       assertEquals("Good",driver.findElement(By.id("like_us")).getAttribute("value"));
+//        assertEquals("Test For Test",driver.findElement(By.id("comment")).getText());
+        assertEquals("Test For Test",driver.findElement(By.xpath("//*[@id=\"fb_form\"]/form/div[6]/textarea")).getAttribute("value"));
+
     }
 }
