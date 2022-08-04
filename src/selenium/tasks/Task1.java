@@ -24,7 +24,11 @@ public class Task1 {
 
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        driver = new ChromeDriver();
+
+        DesiredCapabilities dc = new DesiredCapabilities();
+        dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+
+        driver = new ChromeDriver(dc);
         driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
@@ -77,10 +81,25 @@ public class Task1 {
     }
 
     @Test
-    public void correctSquareRoot() {
+    public void correctSquareRoot() throws InterruptedException {
 //        TODO
 //        enter a number between 50 and 100 digit in the input, then press submit
 //        and check that no error is seen and that square root is calculated correctly
 //        NOTE: input value is hardcoded, but square root used in assertions should be calculated in code
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        int testValue = 64;
+        double sqrRoot = Math.sqrt(testValue);
+
+        String expResultTxt = String.format("Square root of %s is %s", testValue, df.format(sqrRoot));
+        WebElement inputField = driver.findElement(By.cssSelector("#numb"));
+        inputField.sendKeys(String.valueOf(testValue));
+
+        driver.findElement(By.cssSelector("button")).click();
+
+        Alert alert = driver.switchTo().alert();
+        assertEquals(expResultTxt, driver.switchTo().alert().getText());
+        alert.accept();
+        Thread.sleep(2000);
     }
 }
