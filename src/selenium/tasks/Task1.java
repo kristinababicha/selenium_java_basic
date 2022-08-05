@@ -74,6 +74,7 @@ public class Task1 {
         String inputValue = "78";
         driver.findElement(By.id("numb")).sendKeys(inputValue);
         driver.findElement(By.className("w3-btn")).click();
-        driver.switchTo().alert();
+        assertEquals("Square root of 78 is 8.83", driver.switchTo().alert().getText());
+        driver.switchTo().alert().accept();
     }
 }
