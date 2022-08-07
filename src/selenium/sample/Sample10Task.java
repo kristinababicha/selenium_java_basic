@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.pages.ColorSamplePage;
 
 import java.io.File;
@@ -32,14 +34,22 @@ public class Sample10Task {
 
     @Test
     public void loadGreenSleep() throws Exception {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
 //         TODO:
 //         Use page object ColorSamplePage
 //         * 1) click on start loading green button
+        colorPage.clickStartLoadingGreen();
 //         * 2) check that button does not appear,
 //         * but loading text is seen instead   "Loading green..."
+        colorPage.checkStartLoadingGreenBtnNotVisible();
+        colorPage.checkLoadingGreenIsVisible();
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        colorPage.checkStartLoadingGreenBtnNotVisible();
+        wait.until(ExpectedConditions.invisibilityOf(colorPage.getLoadingGreen()));
+        colorPage.checkLoadingGreenIsNOTVisible();
+        colorPage.checkGreenLoadedTxtIsVisible();
     }
 
 }
