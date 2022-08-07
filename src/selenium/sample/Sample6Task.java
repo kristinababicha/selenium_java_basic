@@ -34,13 +34,23 @@ public class Sample6Task {
     public void findElementByXPath() throws Exception {
 //         TODO:
 //        1-2 ways to find text: "Heading 2 text":
+       System.out.println(driver.findElement(By.id("heading_2")).getText());
 //        1-2 ways to find text: "Test Text 1"
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"test1\"]/*[@class=\"test\"]")).getText());
 //        1-2 ways to find text: "Test Text 2"
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"test1\"]/*[contains(text(),\"2\")]")).getText());
 //        1-2 ways to find text: "Test Text 3"
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"test3\"]")).getText());
 //        1-2 ways to find text: "Test Text 4"
+        System.out.println(driver.findElement(By.xpath("//*[text()='Test Text 4']")).getText());
 //        1-2 ways to find text: "Test Text 5"
+        System.out.println(driver.findElement(By.xpath("//*[text()='Test Text 5']")).getText());
 //        1-2 ways to find text: "This is also a button"
+        System.out.println(driver.findElement(By.xpath("//*input[@name='randomButton2']")).getAttribute("value"));
     }
+
+
+
 
     @Test
     public void findElementByCssName() throws Exception {
@@ -50,5 +60,16 @@ public class Sample6Task {
 //        1-2 ways to find text: "Test Text 2"
 //        1-2 ways to find text: "Test Text 3"
 //        1-2 ways to find text: "This is also a button"
+
+        System.out.println(driver.findElement(By.cssSelector("#heading_2")).getText());
+
+        System.out.println(driver.findElement(By.cssSelector("#test1 .test")).getText());
+
+        System.out.println(driver.findElement(By.cssSelector(".twoTest")).getText());
+
+        System.out.println(driver.findElement(By.cssSelector("#test3 > p.test:nth-child(1)")).getText());
+
+        System.out.println(driver.findElement(By.cssSelector("[name=randomButton2]")).getAttribute("value"));
+
     }
 }
