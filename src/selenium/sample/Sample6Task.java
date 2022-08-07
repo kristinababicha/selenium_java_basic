@@ -36,13 +36,17 @@ public class Sample6Task {
 //        1-2 ways to find text: "Heading 2 text":
         System.out.println(driver.findElement(By.xpath("//h2[@id='heading_2']")).getText());
 //        1-2 ways to find text: "Test Text 1"
-
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"test1\"]/*[@class=\"test\"]")).getText());
 //        1-2 ways to find text: "Test Text 2"
-
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"test1\"]/*[contains(text(),\"2\")]")).getText());
 //        1-2 ways to find text: "Test Text 3"
+       System.out.println(driver.findElement(By.xpath("//div[@id=\"test3\"]/*")).getText());
 //        1-2 ways to find text: "Test Text 4"
+        System.out.println(driver.findElement(By.xpath("//*[text()='Test Text 4']")).getText());
 //        1-2 ways to find text: "Test Text 5"
+        System.out.println(driver.findElement(By.xpath("//*[@class=\"Test\"]")).getText());
 //        1-2 ways to find text: "This is also a button"
+        System.out.println(driver.findElement(By.xpath("//input[@name=\"randomButton2\"]")).getText());
     }
 
     @Test
