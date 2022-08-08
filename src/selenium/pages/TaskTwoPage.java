@@ -21,8 +21,9 @@ public class TaskTwoPage extends GenericSamplePage {
     List<WebElement> langCheckBox;
     @FindBy(className = "w3-radio")
     List<WebElement> genderRadioButton;
-    @FindBy(id = "like_us")
-    WebElement likeUsDropdown;
+    @FindBy(id = "like_us") WebElement likeUsDropdown;
+    @FindBy(id = "addPersonBtn") WebElement addPersonButton;
+    @FindBy(xpath = "//button[@onclick = 'addPersonWithJobToList()']") WebElement addButton;
 
     public void clickSend() {
         sendButton.click();
@@ -47,5 +48,11 @@ public class TaskTwoPage extends GenericSamplePage {
     public void selectValueFromLikeUsTable(String text) {
         Select select = new Select(likeUsDropdown);
         select.selectByValue(text);
+    }
+    public void clickAddPersonButton(){
+        addPersonButton.click();
+    }
+    public void clickAddButton(){
+        addButton.click();
     }
 }
